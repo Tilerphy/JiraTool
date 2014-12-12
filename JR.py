@@ -71,7 +71,7 @@ def Go(jiraBaseAddress,username, password):
 			print "Ignore"
 			continue
 		else:
-			UpdatePoint(jiraNumber, nPoint)
+			UpdatePoint(jiraNumber, round(float(nPoint),1))
 
 def UpdatePoint(jiraNumber, point):
 	global _baseUrl, _browser
