@@ -55,6 +55,7 @@ def Go(jiraBaseAddress,username, password):
 	print keys
 	for jiraNumber in keys:
 		summary = ReadSummary(jiraNumber)
+		print "======================%s=====================" % jiraNumber
 		print "Summary: %s" % summary["fields"]["summary"].encode("utf8")
 		print "Assignee: %s" % summary["fields"]["assignee"]["displayName"].encode("utf8")
 		description = summary["fields"]["description"] 
@@ -65,8 +66,9 @@ def Go(jiraBaseAddress,username, password):
 			if len(comment["comments"])>0:
 				for commentline in comment["comments"]:
 					print "%s: %s" % (commentline["author"]["displayName"].encode("utf8"), commentline["body"].encode("utf8"))
-		nPoint = input("New Point: ")
-		if nPoint == "-1":
+		nPoint = raw_input("New Point: ")
+		if nPoint == "":
+			print "Ignore"
 			continue
 		else:
 			UpdatePoint(jiraNumber, nPoint)
